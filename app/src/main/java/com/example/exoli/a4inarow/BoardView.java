@@ -151,6 +151,7 @@ public class BoardView extends RelativeLayout {
 
     public void showWinStatus(Logic.Status status, ArrayList<ImageView> winDiscs) {
         MediaPlayer winnersound = MediaPlayer.create(this.context, R.raw.win);
+        MediaPlayer losesound = MediaPlayer.create(this.context, R.raw.lose);
         if (status != Logic.Status.CONTINUE) {
 
             winner.setVisibility(VISIBLE);
@@ -175,19 +176,22 @@ public class BoardView extends RelativeLayout {
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(R.drawable.win_yellow);
                         winnersound.start();
-                       // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
-                            //R.drawable.win_yellow : R.drawable.win_red);
+                        // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
+                        //R.drawable.win_yellow : R.drawable.win_red);
                     }
                     break;
-            /*    case WIN_COMP:
-                    winner.setText(context.getString(R.string.comp_win));
-                    for (ImageView winDisc : winDiscs) {
-                        winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
-                                R.drawable.win_red : R.drawable.win_yellow);
-                    }
-                    break;*/
+                //case WIN_COMP:
                 default:
+                    winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
+                            context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
+                    for (ImageView winDisc : winDiscs) {
+                        winDisc.setImageResource(R.drawable.win_yellow);
+                        losesound.start();
+                    }
                     break;
+                //default:
+
+                    //break;
             }
         } else {
             winner.setVisibility(INVISIBLE);
