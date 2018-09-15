@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "305984604047",
+    "firebase_url": "https://inarow-4174d.firebaseio.com",
+    "project_id": "inarow-4174d",
+    "storage_bucket": "inarow-4174d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305984604047:android:b668a8444f34696a",
+        "android_client_info": {
+          "package_name": "com.example.exoli.a4inarow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305984604047-0ec2untidcfe34a2qt9lj4fenhuoae34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exoli.a4inarow",
+            "certificate_hash": "2e4ae562dddfb347873490b06452a49c589907ca"
+          }
+        },
+        {
+          "client_id": "305984604047-g9ev1l97ed093me4c3f0gh95uv3qhf37.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.exoli.a4inarow",
+            "certificate_hash": "024cdd810427745adad1db99e4574f7aea88fc7c"
+          }
+        },
+        {
+          "client_id": "305984604047-ql4p2c3rm3semsq96t078me4h5lnncqt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuy0hfcBXRqqTDO7y48Jvh2mjOO8Mizvs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305984604047-ql4p2c3rm3semsq96t078me4h5lnncqt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

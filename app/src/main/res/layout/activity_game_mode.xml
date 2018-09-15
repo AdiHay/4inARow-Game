@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/background_style"
+    tools:context=".activities.GameModeActivity">
+
+    <Button
+        android:id="@+id/btn_2players_same"
+        style="mode_button_style"
+        android:layout_width="259dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="88dp"
+        android:text="@string/mode_2players_same"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_2players_web"
+        android:layout_width="260dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/mode_2players_web"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_2players_same" />
+
+    <Button
+        android:id="@+id/btn_1vscomputer"
+        android:layout_width="260dp"
+        android:layout_height="88dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/mode_1vscomp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_2players_web" />
+
+    <Button
+        android:id="@+id/btn_winningtable"
+        android:layout_width="161dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/mode_winningtable"
+        android:textColor="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_1vscomputer" />
+
+</android.support.constraint.ConstraintLayout>
