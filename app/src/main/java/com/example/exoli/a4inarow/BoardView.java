@@ -117,6 +117,7 @@ public class BoardView extends RelativeLayout {
 
     public void dropCoin(int row, int col, final int playerTurn) {
 
+        MediaPlayer coindrops = MediaPlayer.create(this.context, R.raw.coindrop);
         final ImageView cell = cells[row][col];
         float move = -(cell.getHeight() * row + cell.getHeight() + 15);
         cell.setY(move);
@@ -124,7 +125,6 @@ public class BoardView extends RelativeLayout {
                 R.drawable.red_disc : R.drawable.yellow_disc);
         //gameRules.getRule(GameRules.COIN1) : gameRules.getRule(GameRules.COIN2));
         cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
-        MediaPlayer coindrops = MediaPlayer.create(this.context, R.raw.coindrop);
         coindrops.start();
     }
 
@@ -150,6 +150,7 @@ public class BoardView extends RelativeLayout {
     }
 
     public void showWinStatus(Logic.Status status, ArrayList<ImageView> winDiscs) {
+        MediaPlayer winnersound = MediaPlayer.create(this.context, R.raw.win);
         if (status != Logic.Status.CONTINUE) {
 
             winner.setVisibility(VISIBLE);
@@ -165,6 +166,7 @@ public class BoardView extends RelativeLayout {
                         winDisc.setImageResource(R.drawable.win_red);
                         //winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
                         //        R.drawable.win_red : R.drawable.win_yellow);
+                        winnersound.start();
                     }
                     break;
                 case WIN_P2:
@@ -172,6 +174,7 @@ public class BoardView extends RelativeLayout {
                             context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(R.drawable.win_yellow);
+                        winnersound.start();
                        // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
                             //R.drawable.win_yellow : R.drawable.win_red);
                     }
@@ -186,8 +189,6 @@ public class BoardView extends RelativeLayout {
                 default:
                     break;
             }
-            MediaPlayer winnersound = MediaPlayer.create(this.context, R.raw.win);
-            winnersound.start();
         } else {
             winner.setVisibility(INVISIBLE);
         }
