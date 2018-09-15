@@ -2,6 +2,7 @@ package com.example.exoli.a4inarow;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageView;
 

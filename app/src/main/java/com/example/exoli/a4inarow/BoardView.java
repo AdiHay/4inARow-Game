@@ -160,16 +160,18 @@ public class BoardView extends RelativeLayout {
                 case WIN_P1:
                     winner.setText(context.getString(R.string.you_win));
                     for (ImageView winDisc : winDiscs) {
-                        winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
-                                R.drawable.win_red : R.drawable.win_yellow);
+                        winDisc.setImageResource(R.drawable.win_red);
+                        //winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
+                        //        R.drawable.win_red : R.drawable.win_yellow);
                     }
                     break;
                 case WIN_P2:
                     winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
                             context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
                     for (ImageView winDisc : winDiscs) {
-                        winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
-                                R.drawable.win_red : R.drawable.win_yellow);
+                        winDisc.setImageResource(R.drawable.win_yellow);
+                       // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
+                            //R.drawable.win_yellow : R.drawable.win_red);
                     }
                     break;
             /*    case WIN_COMP:
