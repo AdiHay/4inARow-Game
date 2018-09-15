@@ -176,22 +176,26 @@ public class BoardView extends RelativeLayout {
                     }
                     break;
                 case WIN_P2:
-                    winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
-                            context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
+                    if(gameRules.getRule(GameRules.OPPONENT) == R.string.opponent_ai) {
+                        winner.setText(R.string.comp_win);
+                        playEffect(R.raw.lose);
+                    }
+                    else {
+                        winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
+                                context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
+                        playEffect(R.raw.win);
+                    }
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(R.drawable.win_yellow);
-                        playEffect(R.raw.win);
+
                         // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
                         //R.drawable.win_yellow : R.drawable.win_red);
+
+
                     }
                     break;
-                //case WIN_COMP:
                 default: {
-                    playEffect(R.raw.lose);
                     break;
-                    //default:
-
-                    //break;
                 }
             }
         } else {
