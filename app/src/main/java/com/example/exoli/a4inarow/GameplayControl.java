@@ -165,4 +165,5 @@ public class GameplayControl implements View.OnClickListener {
         int col = boardView.colAtX(v.getX());
         selectColumn(col);
     }
+
 }

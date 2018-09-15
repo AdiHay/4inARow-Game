@@ -1,6 +1,7 @@
 package com.example.exoli.a4inarow;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -123,7 +124,8 @@ public class BoardView extends RelativeLayout {
                 R.drawable.red_disc : R.drawable.yellow_disc);
         //gameRules.getRule(GameRules.COIN1) : gameRules.getRule(GameRules.COIN2));
         cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
-
+        MediaPlayer coindrops = MediaPlayer.create(this.context, R.raw.coindrop);
+        coindrops.start();
     }
 
     public int colAtX(float x) {
@@ -184,6 +186,8 @@ public class BoardView extends RelativeLayout {
                 default:
                     break;
             }
+            MediaPlayer winnersound = MediaPlayer.create(this.context, R.raw.win);
+            winnersound.start();
         } else {
             winner.setVisibility(INVISIBLE);
         }
