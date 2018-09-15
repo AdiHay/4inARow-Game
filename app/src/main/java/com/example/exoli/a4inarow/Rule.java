@@ -15,7 +15,7 @@ abstract class Rule {
 */
    Rule(int[] ids) {
         ruleIds = ids;
-        selectId = ids[0];
+        selectId = ids[1];
     }
 
     public int[] getRuleIds() {

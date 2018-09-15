@@ -115,17 +115,24 @@ public class BoardView extends RelativeLayout {
         showWinStatus(Logic.Status.CONTINUE, null);
     }
 
+    private void playEffect(int id) {
+
+        MediaPlayer effect = MediaPlayer.create(this.getContext(), id);
+        effect.start();
+    }
+
+
+
     public void dropCoin(int row, int col, final int playerTurn) {
 
-        MediaPlayer coindrops = MediaPlayer.create(this.context, R.raw.coindrop);
         final ImageView cell = cells[row][col];
         float move = -(cell.getHeight() * row + cell.getHeight() + 15);
         cell.setY(move);
         cell.setImageResource(playerTurn == AI.USER ?
                 R.drawable.red_disc : R.drawable.yellow_disc);
         //gameRules.getRule(GameRules.COIN1) : gameRules.getRule(GameRules.COIN2));
+        playEffect(R.raw.coindrop);
         cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
-        coindrops.start();
     }
 
     public int colAtX(float x) {
@@ -150,8 +157,6 @@ public class BoardView extends RelativeLayout {
     }
 
     public void showWinStatus(Logic.Status status, ArrayList<ImageView> winDiscs) {
-        MediaPlayer winnersound = MediaPlayer.create(this.context, R.raw.win);
-        MediaPlayer losesound = MediaPlayer.create(this.context, R.raw.lose);
         if (status != Logic.Status.CONTINUE) {
 
             winner.setVisibility(VISIBLE);
@@ -167,7 +172,7 @@ public class BoardView extends RelativeLayout {
                         winDisc.setImageResource(R.drawable.win_red);
                         //winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
                         //        R.drawable.win_red : R.drawable.win_yellow);
-                        winnersound.start();
+                        playEffect(R.raw.win);
                     }
                     break;
                 case WIN_P2:
@@ -175,23 +180,19 @@ public class BoardView extends RelativeLayout {
                             context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(R.drawable.win_yellow);
-                        winnersound.start();
+                        playEffect(R.raw.win);
                         // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
                         //R.drawable.win_yellow : R.drawable.win_red);
                     }
                     break;
                 //case WIN_COMP:
-                default:
-                    winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
-                            context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
-                    for (ImageView winDisc : winDiscs) {
-                        winDisc.setImageResource(R.drawable.win_yellow);
-                        losesound.start();
-                    }
+                default: {
+                    playEffect(R.raw.lose);
                     break;
-                //default:
+                    //default:
 
                     //break;
+                }
             }
         } else {
             winner.setVisibility(INVISIBLE);
