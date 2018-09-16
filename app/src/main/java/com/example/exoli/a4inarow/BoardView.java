@@ -3,6 +3,7 @@ package com.example.exoli.a4inarow;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
@@ -11,7 +12,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.exoli.a4inarow.classes.AI;
+import com.example.exoli.a4inarow.classes.Game;
 import com.example.exoli.a4inarow.classes.Logic;
+import com.example.exoli.a4inarow.classes.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -39,6 +46,11 @@ public class BoardView extends RelativeLayout {
     private View board;
     private TextView winner;
     private Context context;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser currentUser = mAuth.getCurrentUser();
+    private User user = new User(currentUser.getEmail() , currentUser.getDisplayName(), currentUser.getUid());
+    private Game game;
+    private DatabaseReference db = FirebaseDatabase.getInstance().getReference("games");
 
     public ImageView[][] getCells() {
         return cells;
@@ -172,17 +184,22 @@ public class BoardView extends RelativeLayout {
                         winDisc.setImageResource(R.drawable.win_red);
                         //winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
                         //        R.drawable.win_red : R.drawable.win_yellow);
-                        playEffect(R.raw.win);
                     }
+                    game = new Game(user, User.guest());
+                    db.child(game.getGameTag()).setValue(game);
+                    playEffect(R.raw.win);
                     break;
                 case WIN_P2:
                     if(gameRules.getRule(GameRules.OPPONENT) == R.string.opponent_ai) {
                         winner.setText(R.string.comp_win);
+                        game = new Game(User.AIUser(), user);
                         playEffect(R.raw.lose);
                     }
                     else {
                         winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
                                 context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
+                        game = new Game(User.guest(), user);
+                        db.child(game.getGameTag()).setValue(game);
                         playEffect(R.raw.win);
                     }
                     for (ImageView winDisc : winDiscs) {

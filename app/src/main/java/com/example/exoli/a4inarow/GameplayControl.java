@@ -120,12 +120,12 @@ public class GameplayControl implements View.OnClickListener {
     }
 
     private void selectColumn(int column) {
-        if (freeCells[COLS-column-1] == 0)
+        if (freeCells[column] == 0)
             return;
 
-        logic.placeMove(COLS-column-1, playerTurn);
+        logic.placeMove(column, playerTurn);
 
-        boardView.dropCoin(freeCells[COLS-column-1], COLS-column-1, playerTurn);
+        boardView.dropCoin(freeCells[column], column, playerTurn);
         playerTurn = playerTurn == AI.USER ? AI.AI_USER : AI.USER;
         checkForWin();
         aiTurn = false;

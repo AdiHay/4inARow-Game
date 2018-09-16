@@ -22,6 +22,10 @@ public class User implements Serializable {
         return new User("", guestName, guestName);
     }
 
+    public static User AIUser() {
+        return new User("AI", "", "");
+    }
+
     public String getEmail() {
         return email;
     }

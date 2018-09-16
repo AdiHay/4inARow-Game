@@ -23,7 +23,7 @@
         <activity android:name=".activities.GameActivity" />
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".activities.GameModeActivity" />
-        <activity android:name=".WinningTableActivity"></activity>
+        <activity android:name=".activities.WinningTableActivity"></activity>
     </application>
 
 </manifest>

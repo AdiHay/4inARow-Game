@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.exoli.a4inarow.R;
-import com.example.exoli.a4inarow.WinningTableActivity;
 import com.example.exoli.a4inarow.classes.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;

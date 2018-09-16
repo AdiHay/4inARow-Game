@@ -60,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 if (password.length() < MINIMUM_PASSWORD_LENGTH) {
-                    edtUserName.setError(getString(R.string.pass_min_msg));
+                    edtPassword.setError(getString(R.string.pass_min_msg));
                     return;
                 }
 
