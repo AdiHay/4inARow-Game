@@ -108,7 +108,6 @@ public class GameplayControl implements View.OnClickListener {
             ai = null;
         }
 
-        // if it is a computer turn, go ahead with it
         if (playerTurn == GameRules.FirstTurn.PLAYER2 && ai != null)
             aiTurn();
     }

@@ -82,6 +82,7 @@ public class GameModeActivity extends AppCompatActivity {
 
     private void modeWinningTable() {
         Intent intent = new Intent(GameModeActivity.this, WinningTableActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     }
 

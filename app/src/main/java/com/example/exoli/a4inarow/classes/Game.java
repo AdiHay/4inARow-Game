@@ -13,11 +13,12 @@ public class Game implements Serializable {
     public Game() {
     }
 
-    public Game(User winner, User loser) {
+    public Game(User winner, User loser, String gameTag) {
         this.winner = winner;
         this.loser = loser;
         this.ldt = LocalDateTime.now();
-        setGameTag("game_" + ldt.format(DateTimeFormatter.ofPattern("dd-MM-uu_HH:mm:ss")));
+        this.gameTag = gameTag;
+        //setGameTag("game_" + ldt.format(DateTimeFormatter.ofPattern("dd-MM-uu_HH:mm:ss")));
     }
 
     public User getWinner() {

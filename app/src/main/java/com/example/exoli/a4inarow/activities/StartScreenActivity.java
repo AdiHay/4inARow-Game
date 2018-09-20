@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class StartScreenActivity extends AppCompatActivity {
 
-    //private static final String TAG = "EmailPassword";
     private TextView txtGameName;
     private TextView txtEmail;
     private EditText edtEmail;

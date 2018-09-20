@@ -186,20 +186,25 @@ public class BoardView extends RelativeLayout {
                         //winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
                         //        R.drawable.win_red : R.drawable.win_yellow);
                     }
-                    game = new Game(user, User.guest());
+                    String gameTag = db.push().getKey();
+                    game = new Game(user, User.guest(), gameTag);
+                    Log.i("user1", game.getWinner().getEmail());
                     db.child(game.getGameTag()).setValue(game);
                     playEffect(R.raw.win);
                     break;
                 case WIN_P2:
                     if(gameRules.getRule(GameRules.OPPONENT) == R.string.opponent_ai) {
                         winner.setText(R.string.comp_win);
-                        game = new Game(User.AIUser(), user);
+                        gameTag = db.push().getKey();
+                        game = new Game(User.AIUser(), user, gameTag);
                         playEffect(R.raw.lose);
                     }
                     else {
                         winner.setText(gameRules.getRule(GameRules.OPPONENT) == GameRules.Opponent.AI ?
                                 context.getString(R.string.you_lose) : context.getString(R.string.friend_win));
-                        game = new Game(User.guest(), user);
+                        gameTag = db.push().getKey();
+                        game = new Game(User.guest(), user, gameTag);
+                        Log.i("user1", game.getLoser().getEmail());
                         db.child(game.getGameTag()).setValue(game);
                         playEffect(R.raw.win);
                     }
