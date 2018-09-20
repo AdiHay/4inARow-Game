@@ -177,6 +177,7 @@ public class BoardView extends RelativeLayout {
             switch (status) {
                 case DRAW:
                     winner.setText(context.getString(R.string.draw));
+                    playEffect(R.raw.lose);
                     break;
                 case WIN_P1:
                     winner.setText(context.getString(R.string.you_win));

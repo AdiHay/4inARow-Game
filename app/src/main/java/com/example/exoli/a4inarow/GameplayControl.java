@@ -142,6 +142,7 @@ public class GameplayControl implements View.OnClickListener {
         if (status != status.CONTINUE) {
             finished = true;
             ArrayList<ImageView> winDiscs = logic.getWinDiscs(boardView.getCells());
+
             boardView.showWinStatus(status, winDiscs);
 
         } else {

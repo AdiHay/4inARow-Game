@@ -2,6 +2,8 @@ package com.example.exoli.a4inarow.classes;
 
 import android.widget.ImageView;
 
+import com.example.exoli.a4inarow.GameplayControl;
+
 import java.util.ArrayList;
 
 public class Logic {
@@ -196,6 +198,21 @@ public class Logic {
                 || backward_diagonal_matches >= WIN_CONDITION - 1;
     }
 
+    private boolean isADraw() {
+        for (int j = 0; j < colsNum ; j++) {
+            cell = board[0][j];
+            if (cell == 0) {
+                isDrew = false;
+                return false;
+            }
+            if (cell != 0 ) {
+                isDrew = true;
+            }
+        }
+
+        return true;
+    }
+
     public Status checkStatus() {
         isDrew = true;
         cell = 0;
@@ -206,7 +223,12 @@ public class Logic {
             else
                 return Status.WIN_P2;
         }
-        return Status.CONTINUE;
+
+        else if(isADraw())
+            return Status.DRAW;
+        else
+            return Status.CONTINUE;
+
     }
 
     public int getColsNum() {
