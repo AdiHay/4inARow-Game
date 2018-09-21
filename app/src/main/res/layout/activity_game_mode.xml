@@ -28,27 +28,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_2players_same" />
 
-    <Button
-        android:id="@+id/btn_1vscomputer"
-        android:layout_width="260dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/mode_1vscomp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_2players_web" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_2players_web">
+
+        <Button
+            android:id="@+id/btn_1vs_ai_easy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/mode_1vs_ai_easy" />
+
+        <Button
+            android:id="@+id/btn_1vs_ai_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/mode_1vs_ai_normal" />
+
+        <Button
+            android:id="@+id/btn_1vs_ai_hard"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/mode_1vs_ai_hard" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_winningtable"
         android:layout_width="161dp"
         android:layout_height="96dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:text="@string/mode_winningtable"
         android:textColor="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_1vscomputer" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </android.support.constraint.ConstraintLayout>

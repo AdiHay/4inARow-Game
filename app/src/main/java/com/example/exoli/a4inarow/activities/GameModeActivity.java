@@ -17,7 +17,9 @@ public class GameModeActivity extends AppCompatActivity {
     private DatabaseReference db;
     private Button btnSamePhoneMode;
     private Button btnWebMode;
-    private Button btnVsComputer;
+    private Button btnVsAIEasy;
+    private Button btnVsAINormal;
+    private Button btnVsAIHard;
     private Button btnWinTable;
     private Button.OnClickListener ocl;
     private User user;
@@ -29,7 +31,7 @@ public class GameModeActivity extends AppCompatActivity {
 
         bindUI();
 
-        user = (User) getIntent().getSerializableExtra("user");
+        user = (User) getIntent().getSerializableExtra(getString(R.string.user));
 
         ocl = new View.OnClickListener() {
             @Override
@@ -42,8 +44,14 @@ public class GameModeActivity extends AppCompatActivity {
                     case R.id.btn_2players_web:
                         mode1on1Web();
                         break;
-                    case R.id.btn_1vscomputer:
-                        mode1VsComputer();
+                    case R.id.btn_1vs_ai_easy:
+                        mode1VsAI(0);
+                        break;
+                    case R.id.btn_1vs_ai_normal:
+                        mode1VsAI(1);
+                        break;
+                    case R.id.btn_1vs_ai_hard:
+                        mode1VsAI(2);
                         break;
                     case R.id.btn_winningtable:
                         modeWinningTable();
@@ -53,39 +61,47 @@ public class GameModeActivity extends AppCompatActivity {
 
         btnSamePhoneMode.setOnClickListener(ocl);
         btnWebMode.setOnClickListener(ocl);
-        btnVsComputer.setOnClickListener(ocl);
+        btnVsAIEasy.setOnClickListener(ocl);
+        btnVsAINormal.setOnClickListener(ocl);
+        btnVsAIHard.setOnClickListener(ocl);
         btnWinTable.setOnClickListener(ocl);
     }
 
     private void bindUI() {
         btnSamePhoneMode = (Button)findViewById(R.id.btn_2players_same);
         btnWebMode = (Button)findViewById(R.id.btn_2players_web);
-        btnVsComputer = (Button)findViewById(R.id.btn_1vscomputer);
+        btnVsAIEasy = (Button)findViewById(R.id.btn_1vs_ai_easy);
+        btnVsAINormal = (Button)findViewById(R.id.btn_1vs_ai_normal);
+        btnVsAIHard = (Button)findViewById(R.id.btn_1vs_ai_hard);
         btnWinTable = (Button)findViewById(R.id.btn_winningtable);
     }
 
     private void mode1on1SamePhone() {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
-        intent.putExtra("host", user);
-        intent.putExtra("guest", User.guest());
+        intent.putExtra(getString(R.string.ai_mode), false);
+        intent.putExtra(getString(R.string.host), user);
+        intent.putExtra(getString(R.string.guest), User.guest());
         startActivity(intent);
     }
 
     private void mode1on1Web() {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
-        intent.putExtra("user", user);
+        intent.putExtra(getString(R.string.ai_mode), false);
+        intent.putExtra(getString(R.string.user), user);
         startActivity(intent);
     }
 
-    private void mode1VsComputer() {
+    private void mode1VsAI(int level) {
         Intent intent = new Intent(GameModeActivity.this, GameActivity.class);
-        intent.putExtra("host", user);
+        intent.putExtra(getString(R.string.ai_mode), true);
+        intent.putExtra(getString(R.string.level), level);
+        intent.putExtra(getString(R.string.host), user);
         startActivity(intent);
     }
 
     private void modeWinningTable() {
         Intent intent = new Intent(GameModeActivity.this, WinningTableActivity.class);
-        intent.putExtra("user", user);
+        intent.putExtra(getString(R.string.user), user);
         startActivity(intent);
     }
 

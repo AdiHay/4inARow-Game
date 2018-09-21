@@ -4,7 +4,7 @@ import com.example.exoli.a4inarow.classes.Game;
 
 abstract class Rule {
     private final int[] ruleIds;
-    private int selectId =0;
+    private int selectId = 0;
 
     // adi added
 /*

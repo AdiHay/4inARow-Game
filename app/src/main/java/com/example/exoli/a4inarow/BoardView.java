@@ -157,11 +157,6 @@ public class BoardView extends RelativeLayout {
         return col;
     }
 
-    /**
-     * toggle player indicator
-     *
-     * @param playerTurn next players value
-     */
     public void togglePlayer(int playerTurn) {
         p1.turn.setVisibility(playerTurn == AI.USER ? VISIBLE : INVISIBLE);
         p2.turn.setVisibility(playerTurn == AI.AI_USER ? VISIBLE : INVISIBLE);
@@ -213,7 +208,6 @@ public class BoardView extends RelativeLayout {
 
                         // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
                         //R.drawable.win_yellow : R.drawable.win_red);
-
 
                     }
                     break;

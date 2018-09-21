@@ -12,6 +12,7 @@ import com.example.exoli.a4inarow.BoardView;
 import com.example.exoli.a4inarow.GameRules;
 import com.example.exoli.a4inarow.GameplayControl;
 import com.example.exoli.a4inarow.R;
+import com.example.exoli.a4inarow.classes.AI;
 import com.example.exoli.a4inarow.classes.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +22,7 @@ public class GameActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference db;
     private User user;
+    private boolean aiMode = false;
     private GameplayControl gameplayControl;
     private final GameRules gameRules = new GameRules();
 
@@ -29,6 +31,25 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        aiMode = getIntent().getExtras().getBoolean(getString(R.string.ai_mode));
+        if(aiMode) {
+            gameRules.setRule(2, GameRules.Opponent.AI);
+            int level = getIntent().getExtras().getInt(getString(R.string.level));
+            System.out.println(level);
+            switch (level) {
+                case 0:
+                    gameRules.setRule(1, GameRules.Level.EASY);
+                    break;
+                case 1:
+                    gameRules.setRule(1, GameRules.Level.NORMAL);
+                    break;
+                case 2:
+                    gameRules.setRule(1, GameRules.Level.HARD);
+                    break;
+            }
+        }
+        else
+            gameRules.setRule(2, GameRules.Opponent.PLAYER);
         user = (User) getIntent().getSerializableExtra(getString(R.string.user));
 
         BoardView boardView = (BoardView) findViewById(R.id.gameView);

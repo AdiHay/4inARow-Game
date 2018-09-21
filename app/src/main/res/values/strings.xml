@@ -21,7 +21,9 @@
     <string name="enter_username_error">Please enter a user name</string>
     <string name="mode_2players_same">2 players\n(Same phone)</string>
     <string name="mode_2players_web">2 players\n(Web)</string>
-    <string name="mode_1vscomp">player vs. Computer</string>
+    <string name="mode_1vs_ai_easy">VS AI - Easy</string>
+    <string name="mode_1vs_ai_normal">VS AI - Normal</string>
+    <string name="mode_1vs_ai_hard">VS AI - Hard</string>
     <string name="mode_winningtable">Winning table</string>
     <string name="opponent_ai">Computer</string>
     <string name="opponent_player">Friend</string>
@@ -36,9 +38,11 @@
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="back">Go Back?</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="txt_winner">Winner:</string>
     <string name="txt_loser">Loser:</string>
+    <string name="level">level</string>
+    <string name="ai_mode">ai_mode</string>
+    <string name="host">host</string>
+    <string name="guest">guest</string>
 </resources>
