@@ -18,6 +18,7 @@ public class GameModeActivity extends AppCompatActivity {
     private Button btnSamePhoneMode;
     private Button btnWebMode;
     private Button btnVsComputer;
+    private Button btnWinTable;
     private Button.OnClickListener ocl;
     private User user;
 
@@ -53,12 +54,14 @@ public class GameModeActivity extends AppCompatActivity {
         btnSamePhoneMode.setOnClickListener(ocl);
         btnWebMode.setOnClickListener(ocl);
         btnVsComputer.setOnClickListener(ocl);
+        btnWinTable.setOnClickListener(ocl);
     }
 
     private void bindUI() {
         btnSamePhoneMode = (Button)findViewById(R.id.btn_2players_same);
         btnWebMode = (Button)findViewById(R.id.btn_2players_web);
         btnVsComputer = (Button)findViewById(R.id.btn_1vscomputer);
+        btnWinTable = (Button)findViewById(R.id.btn_winningtable);
     }
 
     private void mode1on1SamePhone() {

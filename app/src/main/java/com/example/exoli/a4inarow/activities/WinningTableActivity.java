@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.example.exoli.a4inarow.GameFragment;
 import com.example.exoli.a4inarow.R;
 import com.example.exoli.a4inarow.classes.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +33,7 @@ public class WinningTableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_winning_table);
 
         winTable = (TextView)findViewById(R.id.txt_win_table);
-        recyclerView = (RecyclerView)findViewById(R.id.rv_win_table);
+        recyclerView = (RecyclerView)findViewById(R.id.rv_game);
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("games");
         user = (User)getIntent().getSerializableExtra("user");
@@ -40,6 +41,6 @@ public class WinningTableActivity extends AppCompatActivity {
     }
 
     private void displayGames() {
-
+        GameFragment gf = new GameFragment();
     }
 }

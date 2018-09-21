@@ -14,29 +14,23 @@ import com.example.exoli.a4inarow.classes.Game;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class GameFragment extends Fragment {
 
     private View gameView;
     private RecyclerView gameList;
+
     private DatabaseReference gamesRef;
     private FirebaseAuth auth;
     private String currentUserEmail;
 
     public GameFragment() {
         // Required empty public constructor
-    }
-
-    public static GameFragment newInstance(String param1, String param2) {
-        GameFragment fragment = new GameFragment();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -61,20 +55,39 @@ public class GameFragment extends Fragment {
         FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<Game>()
                 .setQuery(gamesRef, Game.class)
                 .build();
-//        FirebaseRecyclerAdapter<Game, GameViewHolder> adapter = new FirebaseRecyclerAdapter<Game, GameViewHolder>() {
-//            @Override
-//            protected void onBindViewHolder(@NonNull GameViewHolder holder, int position, @NonNull Game model) {
-//
-//            }
-//
-//            @NonNull
-//            @Override
-//            public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_display_layout, parent, false);
-//                 GameViewHolder gameViewHolder = new GameViewHolder(view);
-//                 return gameViewHolder;
-//            }
-//        };
+
+        FirebaseRecyclerAdapter<Game, GameViewHolder> adapter = new FirebaseRecyclerAdapter<Game, GameViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull final GameViewHolder holder, int position, @NonNull Game model) {
+                String game = getRef(position).getKey();
+
+                gamesRef.child(game).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String winner = dataSnapshot.child("winner").getValue().toString();
+                        String loser = dataSnapshot.child("loser").getValue().toString();
+
+                        holder.txt_winner.setText(winner);
+                        holder.txt_loser.setText(loser);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public GameViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_display_layout, parent, false);
+                 GameViewHolder gameViewHolder = new GameViewHolder(view);
+                 return gameViewHolder;
+            }
+        };
+        gameList.setAdapter(adapter);
+        adapter.startListening();
     }
 
     public static class GameViewHolder extends RecyclerView.ViewHolder {
