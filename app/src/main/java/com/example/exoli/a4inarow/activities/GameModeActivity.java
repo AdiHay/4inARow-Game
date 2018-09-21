@@ -44,13 +44,13 @@ public class GameModeActivity extends AppCompatActivity {
                     case R.id.btn_2players_web:
                         mode1on1Web();
                         break;
-                    case R.id.btn_1vs_ai_easy:
+                    case R.id.btn_1vs_comp_easy:
                         mode1VsAI(0);
                         break;
-                    case R.id.btn_1vs_ai_normal:
+                    case R.id.btn_1vs_comp_normal:
                         mode1VsAI(1);
                         break;
-                    case R.id.btn_1vs_ai_hard:
+                    case R.id.btn_1vs_comp_hard:
                         mode1VsAI(2);
                         break;
                     case R.id.btn_winningtable:
@@ -70,9 +70,9 @@ public class GameModeActivity extends AppCompatActivity {
     private void bindUI() {
         btnSamePhoneMode = (Button)findViewById(R.id.btn_2players_same);
         btnWebMode = (Button)findViewById(R.id.btn_2players_web);
-        btnVsAIEasy = (Button)findViewById(R.id.btn_1vs_ai_easy);
-        btnVsAINormal = (Button)findViewById(R.id.btn_1vs_ai_normal);
-        btnVsAIHard = (Button)findViewById(R.id.btn_1vs_ai_hard);
+        btnVsAIEasy = (Button)findViewById(R.id.btn_1vs_comp_easy);
+        btnVsAINormal = (Button)findViewById(R.id.btn_1vs_comp_normal);
+        btnVsAIHard = (Button)findViewById(R.id.btn_1vs_comp_hard);
         btnWinTable = (Button)findViewById(R.id.btn_winningtable);
     }
 

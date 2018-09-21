@@ -91,13 +91,11 @@ public class BoardView extends RelativeLayout {
 
     private void setPlayer1() {
         p1.coin.setImageResource(R.drawable.red_disc);
-       // p1.coin.setImageResource(gameRules.getRule(GameRules.COIN1));
         p1.txtName.setText(context.getString(R.string.you));
     }
 
     private void setPlayer2() {
         p2.coin.setImageResource(R.drawable.yellow_disc);
-       // p2.coin.setImageResource(gameRules.getRule(GameRules.COIN2));
         p2.txtName.setText(gameRules.getRule(GameRules.OPPONENT) == R.string.opponent_ai ?
                 context.getString(R.string.opponent_ai) : context.getString(R.string.opponent_player));
     }
@@ -127,13 +125,11 @@ public class BoardView extends RelativeLayout {
         showWinStatus(Logic.Status.CONTINUE, null);
     }
 
-    private void playEffect(int id) {
+    public void playEffect(int id) {
 
         MediaPlayer effect = MediaPlayer.create(this.getContext(), id);
         effect.start();
     }
-
-
 
     public void dropCoin(int row, int col, final int playerTurn) {
 
@@ -142,7 +138,6 @@ public class BoardView extends RelativeLayout {
         cell.setY(move);
         cell.setImageResource(playerTurn == AI.USER ?
                 R.drawable.red_disc : R.drawable.yellow_disc);
-        //gameRules.getRule(GameRules.COIN1) : gameRules.getRule(GameRules.COIN2));
         playEffect(R.raw.coindrop);
         cell.animate().translationY(0).setInterpolator(new BounceInterpolator()).start();
     }
@@ -160,7 +155,6 @@ public class BoardView extends RelativeLayout {
     public void togglePlayer(int playerTurn) {
         p1.turn.setVisibility(playerTurn == AI.USER ? VISIBLE : INVISIBLE);
         p2.turn.setVisibility(playerTurn == AI.AI_USER ? VISIBLE : INVISIBLE);
-       // comp.turn.setVisability(playerTurn == AI.AI_USER ? VISIBLE : INVISIBLE);
     }
 
     public void showWinStatus(Logic.Status status, ArrayList<ImageView> winDiscs) {
@@ -178,8 +172,6 @@ public class BoardView extends RelativeLayout {
                     winner.setText(context.getString(R.string.you_win));
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(R.drawable.win_red);
-                        //winDisc.setImageResource(gameRules.getRule(GameRules.COIN1) == GameRules.Coin.RED ?
-                        //        R.drawable.win_red : R.drawable.win_yellow);
                     }
                     String gameTag = db.push().getKey();
                     game = new Game(user, User.guest(), gameTag);
@@ -205,10 +197,6 @@ public class BoardView extends RelativeLayout {
                     }
                     for (ImageView winDisc : winDiscs) {
                         winDisc.setImageResource(R.drawable.win_yellow);
-
-                        // winDisc.setImageResource(gameRules.getRule(GameRules.COIN2) == GameRules.Coin.RED ?
-                        //R.drawable.win_yellow : R.drawable.win_red);
-
                     }
                     break;
                 default: {
